@@ -1,0 +1,27 @@
+DROP DATABASE IF EXISTS bookstore;
+CREATE DATABASE bookstore;
+USE bookstore;
+CREATE TABLE books (
+                       id_book INT UNSIGNED  AUTO_INCREMENT PRIMARY KEY,
+                       title VARCHAR(128),
+                       yearPublishing INT (4) UNSIGNED,
+                       pages INT (5) UNSIGNED,
+                       authors VARCHAR(128)
+);
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('In Search of Lost Time', 1913, 468, 'Marcel Proust');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Ulysses', 1922, 736, 'James Joyce');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Don Quixote', 1615, 863, 'Miguel de Cervantes');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('The Catcher in the Rye', 1951, 234, 'J. D. Salinger');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('To Kill a Mockingbird', 1960, 281, 'Harper Lee');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Crime and Punishment', 1866, 430, 'Fyodor Dostoyevsky');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('The Divine Comedy', 1472, 432, 'Dante Alighieri');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Alice''s Adventures in Wonderland', 1865, 201, 'Lewis Carroll');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Good Omens', 2006, 512, 'Neil Gaiman, Terry Pratchett');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Tales from the Shadowhunter Academy', 2016, 672, 'Cassandra Clare, Sarah Rees Brennan, Maureen Johnson, Robin Wasserman');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('The Talisman: A Novel', 2012, 944, 'Stephen King, Peter Straub');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Heads You Lose', 2012, 300, 'Lisa Lutz, David Hayward');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('In Search of Lost Time', 20, 50, 'A');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('New Title', 1913, 51, 'B');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('New Title', 21, 468, 'C');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('New Title', 22, 53, 'Marcel Proust, Abc');
+SELECT * FROM books;
