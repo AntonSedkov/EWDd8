@@ -2,13 +2,13 @@ package by.epam.bookstore.model.entity;
 
 import java.io.Serializable;
 
-public class EntityFlag implements Serializable, Cloneable {
+public class Entity implements Serializable, Cloneable {
     private int id;
 
-    public EntityFlag() {
+    public Entity() {
     }
 
-    public EntityFlag(int id) {
+    public Entity(int id) {
         this.id = id;
     }
 

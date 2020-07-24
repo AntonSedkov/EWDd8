@@ -1,31 +1,57 @@
 package by.epam.bookstore.model.dao;
 
 import by.epam.bookstore.exception.DaoException;
-import by.epam.bookstore.model.entity.BookItem;
+import by.epam.bookstore.model.entity.Book;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
-public interface BookDao {
+public interface BookDao extends AbstractDao<Integer, Book> {
 
+    Optional<Book> findByID(int id) throws DaoException;
 
+    List<Book> findAndSortByTitle(String... title) throws DaoException;
 
+    List<Book> findAndSortByYearPublishing(int... yearPublishing) throws DaoException;
 
+    List<Book> findAndSortByAuthor(String... author) throws DaoException;
 
-    List<BookItem> findByYearPublishing(int yearPublishing) throws DaoException;
+    List<Book> findAndSortByPages(int... pages) throws DaoException;
 
-    List<BookItem> findByAuthor(String author) throws DaoException;
+    int countQuantityBooksInBookstore() throws DaoException;
 
-    List<BookItem> findByPages(int pages) throws DaoException;
+    default void close(ResultSet resultSet) throws DaoException {
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                // TODO: 24.07.2020 log.error throw new DaoException("ResultSet unable to close");
+            }
+        }
+    }
 
-    List<BookItem> sortBooksByID() throws DaoException;
+    default void close(Statement statement) throws DaoException {
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                // TODO: 24.07.2020 log.error //throw new DaoException("Statement unable to close");
+            }
+        }
+    }
 
-    List<BookItem> sortBooksByTitle() throws DaoException;
-
-    List<BookItem> sortBooksByYearPublishing() throws DaoException;
-
-    List<BookItem> sortBooksByAuthors() throws DaoException;
-
-    List<BookItem> sortBooksByPages() throws DaoException;
+    default void close(Connection connection) throws DaoException {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                // TODO: 24.07.2020 log  throw new DaoException("Statement unable to close");
+            }
+        }
+    }
 
 }

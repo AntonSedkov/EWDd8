@@ -1,23 +1,21 @@
 package by.epam.bookstore.model.dao;
 
 import by.epam.bookstore.exception.DaoException;
-import by.epam.bookstore.model.entity.BookItem;
-import by.epam.bookstore.model.entity.EntityFlag;
+import by.epam.bookstore.model.entity.Book;
+import by.epam.bookstore.model.entity.Entity;
 
 import java.util.List;
 
-public abstract class AbstractDao<K, T extends EntityFlag> {
+public interface AbstractDao<K, T extends Entity> {
 
-    public abstract boolean create(T entity) throws DaoException;
+    boolean create(T entity) throws DaoException;
 
-    public abstract List<BookItem> findAll() throws DaoException;
+    List<Book> findAll() throws DaoException;
 
-    public abstract BookItem findByID(K id) throws DaoException;
+    boolean update(T entity) throws DaoException;
 
-    public abstract T update(T entity) throws DaoException;
+    boolean delete(K id) throws DaoException;
 
-    public abstract boolean delete(K id) throws DaoException;
-
-    public abstract boolean delete(T entity) throws DaoException;
+    boolean delete(T entity) throws DaoException;
 
 }

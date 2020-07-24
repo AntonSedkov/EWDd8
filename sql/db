@@ -3,10 +3,10 @@ CREATE DATABASE bookstore;
 USE bookstore;
 CREATE TABLE books (
                        id_book INT UNSIGNED  AUTO_INCREMENT PRIMARY KEY,
-                       title VARCHAR(128),
-                       yearPublishing INT (4) UNSIGNED,
-                       pages INT (5) UNSIGNED,
-                       authors VARCHAR(128)
+                       title VARCHAR(128) NOT NULL ,
+                       yearPublishing INT (4) UNSIGNED NOT NULL ,
+                       pages INT (5) UNSIGNED NOT NULL ,
+                       authors VARCHAR(128) NOT NULL
 );
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('In Search of Lost Time', 1913, 468, 'Marcel Proust');
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Ulysses', 1922, 736, 'James Joyce');
