@@ -1,8 +1,6 @@
 package by.epam.bookstore.model.entity;
 
-import java.io.Serializable;
-
-public class Entity implements Serializable, Cloneable {
+public class Entity {
     private int id;
 
     public Entity() {

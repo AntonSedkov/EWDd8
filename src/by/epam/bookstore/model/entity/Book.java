@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Book extends Entity {
 
-    private int idBook;
     private String title;
     private int yearPublishing;
     private int pages;
@@ -68,13 +67,13 @@ public class Book extends Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        if (idBook != book.idBook) return false;
+        if (getId() != book.getId()) return false;
         return equalsBooks(book);
     }
 
     @Override
     public int hashCode() {
-        int result = idBook;
+        int result = getId();
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (authors != null ? authors.hashCode() : 0);
         result = 31 * result + yearPublishing;
@@ -85,7 +84,7 @@ public class Book extends Entity {
     @Override
     public String toString() {
         return new StringJoiner(", ", Book.class.getSimpleName() + "[", "]")
-                .add("idBook=" + idBook)
+                .add("idBook=" + getId())
                 .add("title='" + title + "'")
                 .add("authors=" + authors)
                 .add("yearPublishing=" + yearPublishing)

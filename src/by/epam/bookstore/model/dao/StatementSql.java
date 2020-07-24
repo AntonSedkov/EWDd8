@@ -1,10 +1,10 @@
-package by.epam.bookstore.model.connection;
+package by.epam.bookstore.model.dao;
 
 public class StatementSql {
 
     public static final String SQL_BOOK_ADD = "INSERT INTO books (title, yearPublishing, pages, authors) VALUES (?, ?, ?, ?)";
     public static final String SQL_BOOK_FIND_ALL = "SELECT id_book, title, yearPublishing, pages, authors FROM books";
-    public static final String SQL_BOOK_FIND_BY_ID = "SELECT title, yearPublishing, pages, authors FROM books WHERE id_book = (?)";
+    public static final String SQL_BOOK_FIND_BY_ID = "SELECT id_book, title, yearPublishing, pages, authors FROM books WHERE id_book = (?)";
     public static final String SQL_BOOK_FIND_AND_SORT_BY_TITLE = "SELECT id_book, title, yearPublishing, pages, authors FROM books WHERE title = (?) ORDER BY title";
     public static final String SQL_BOOK_FIND_AND_SORT_BY_YEAR_PUBLISHING = "SELECT id_book, title, yearPublishing, pages, authors FROM books WHERE yearPublishing = (?) ORDER BY yearPublishing";
     public static final String SQL_BOOK_FIND_AND_SORT_BY_AUTHOR = "SELECT id_book, title, yearPublishing, pages, authors FROM books WHERE  authors LIKE (%?%) ORDER BY authors";
