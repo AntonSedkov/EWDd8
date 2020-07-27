@@ -1,5 +1,0 @@
-2020-07-28 00:28:22 [main] DEBUG DemoLog:13 - Debug Message!
-2020-07-28 00:28:22 [main] INFO  DemoLog:14 - Info Message!
-2020-07-28 00:28:22 [main] WARN  DemoLog:15 - Warn Message!
-2020-07-28 00:28:22 [main] ERROR DemoLog:16 - Error Message!
-2020-07-28 00:28:22 [main] FATAL DemoLog:17 - Fatal Message!
