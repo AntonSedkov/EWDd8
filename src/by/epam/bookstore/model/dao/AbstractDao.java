@@ -12,7 +12,7 @@ public interface AbstractDao<K, T extends Entity> {
 
     List<Book> findAll() throws DaoException;
 
-    boolean update(T entity) throws DaoException;
+    boolean update(T entity, K id) throws DaoException;
 
     boolean delete(K id) throws DaoException;
 

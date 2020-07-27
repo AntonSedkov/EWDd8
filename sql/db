@@ -23,5 +23,5 @@ INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Heads You Lose
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('In Search of Lost Time', 20, 50, 'A');
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('New Title', 1913, 51, 'B');
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('New Title', 21, 468, 'C');
-INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('New Title', 22, 53, 'Marcel Proust, Abc');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('New Title', 22, 53, 'Abc, Marcel Proust');
 SELECT * FROM books;

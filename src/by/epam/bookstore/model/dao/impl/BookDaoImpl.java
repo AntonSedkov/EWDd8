@@ -28,7 +28,6 @@ public class BookDaoImpl implements BookDao {
         return instance;
     }
 
-
     @Override
     public boolean create(Book entity) throws DaoException {
         boolean result;
@@ -42,7 +41,6 @@ public class BookDaoImpl implements BookDao {
             for (String author : authors) {
                 authorsParam.add(author);
             }
-            // TODO: 23.07.2020   System.out.println(authors);
             preparedStatement.setString(4, authorsParam.toString());
             result = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -82,7 +80,6 @@ public class BookDaoImpl implements BookDao {
                 Book book = createBookFromResultSet(resultSet);
                 result = Optional.of(book);
             }
-            // TODO: 23.07.2020  System.out.println(result);
         } catch (SQLException e) {
             throw new DaoException("Exception of finding book by id from database", e);
         } finally {
@@ -94,19 +91,26 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> findAndSortByTitle(String... title) throws DaoException {
         List<Book> books = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try (Connection connection = pool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_FIND_AND_SORT_BY_TITLE)) {
-            if (title != null) {
+        try (Connection connection = pool.getConnection()) {
+            if (title.length > 0) {
+                preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_FIND_BY_TITLE);
                 preparedStatement.setString(1, title[0]);
+                resultSet = preparedStatement.executeQuery();
+            } else {
+                preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_SORT_BY_TITLE);
+                resultSet = preparedStatement.executeQuery();
             }
-            resultSet = preparedStatement.executeQuery();
-            Book book = createBookFromResultSet(resultSet);
-            books.add(book);
+            while (resultSet.next()) {
+                Book book = createBookFromResultSet(resultSet);
+                books.add(book);
+            }
         } catch (SQLException e) {
             throw new DaoException("Exception of getting books by title from database", e);
         } finally {
             close(resultSet);
+            close(preparedStatement);
         }
         return books;
     }
@@ -114,19 +118,26 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> findAndSortByYearPublishing(int... yearPublishing) throws DaoException {
         List<Book> books = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try (Connection connection = pool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_FIND_AND_SORT_BY_YEAR_PUBLISHING)) {
-            if (yearPublishing != null) {
+        try (Connection connection = pool.getConnection()) {
+            if (yearPublishing.length > 0) {
+                preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_FIND_BY_YEAR_PUBLISHING);
                 preparedStatement.setInt(1, yearPublishing[0]);
+                resultSet = preparedStatement.executeQuery();
+            } else {
+                preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_SORT_BY_YEAR_PUBLISHING);
+                resultSet = preparedStatement.executeQuery();
             }
-            resultSet = preparedStatement.executeQuery();
-            Book book = createBookFromResultSet(resultSet);
-            books.add(book);
+            while (resultSet.next()) {
+                Book book = createBookFromResultSet(resultSet);
+                books.add(book);
+            }
         } catch (SQLException e) {
-            throw new DaoException("Exception of getting books by yearPublishing from database", e);
+            throw new DaoException("Exception of getting books by year publishing from database", e);
         } finally {
             close(resultSet);
+            close(preparedStatement);
         }
         return books;
     }
@@ -134,19 +145,27 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> findAndSortByAuthor(String... author) throws DaoException {
         List<Book> books = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try (Connection connection = pool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_FIND_AND_SORT_BY_AUTHOR)) {
-            if (author != null) {
-                preparedStatement.setString(1, author[0]);
+        try (Connection connection = pool.getConnection()) {
+            if (author.length > 0) {
+                preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_FIND_BY_AUTHOR);
+                String likeAuthor = StatementSql.SQL_LIKE_CHARACTER_ANY_SYMBOL + author[0] + StatementSql.SQL_LIKE_CHARACTER_ANY_SYMBOL;
+                preparedStatement.setString(1, likeAuthor);
+                resultSet = preparedStatement.executeQuery();
+            } else {
+                preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_SORT_BY_AUTHOR);
+                resultSet = preparedStatement.executeQuery();
             }
-            resultSet = preparedStatement.executeQuery();
-            Book book = createBookFromResultSet(resultSet);
-            books.add(book);
+            while (resultSet.next()) {
+                Book book = createBookFromResultSet(resultSet);
+                books.add(book);
+            }
         } catch (SQLException e) {
             throw new DaoException("Exception of getting books by author from database", e);
         } finally {
             close(resultSet);
+            close(preparedStatement);
         }
         return books;
     }
@@ -154,27 +173,34 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> findAndSortByPages(int... pages) throws DaoException {
         List<Book> books = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try (Connection connection = pool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_FIND_AND_SORT_BY_PAGES)) {
-            if (pages != null) {
+        try (Connection connection = pool.getConnection()) {
+            if (pages.length > 0) {
+                preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_FIND_BY_PAGES);
                 preparedStatement.setInt(1, pages[0]);
+                resultSet = preparedStatement.executeQuery();
+            } else {
+                preparedStatement = connection.prepareStatement(StatementSql.SQL_BOOK_SORT_BY_PAGES);
+                resultSet = preparedStatement.executeQuery();
             }
-            resultSet = preparedStatement.executeQuery();
-            Book book = createBookFromResultSet(resultSet);
-            books.add(book);
+            while (resultSet.next()) {
+                Book book = createBookFromResultSet(resultSet);
+                books.add(book);
+            }
         } catch (SQLException e) {
-            throw new DaoException("Exception of getting books by from database", e);
+            throw new DaoException("Exception of getting books by year publishing from database", e);
         } finally {
             close(resultSet);
+            close(preparedStatement);
         }
         return books;
     }
 
     @Override
-    public boolean update(Book entity) throws DaoException {
-        if (entity.getId() <= 0) {
-            throw new DaoException("This book hasn't id and unable to update");
+    public boolean update(Book entity, Integer id) throws DaoException {
+        if (id <= 0) {
+            throw new DaoException("The wrong id. Unable to update book");
         }
         boolean result;
         try (Connection connection = pool.getConnection();
@@ -188,7 +214,7 @@ public class BookDaoImpl implements BookDao {
                 authorsParam.add(author);
             }
             preparedStatement.setString(4, authorsParam.toString());
-            preparedStatement.setInt(5, entity.getId());
+            preparedStatement.setInt(5, id);
             result = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DaoException("Exception of updating book into database", e);
@@ -236,13 +262,30 @@ public class BookDaoImpl implements BookDao {
         int result = 0;
         try (Connection connection = pool.getConnection();
              Statement statement = connection.createStatement()) {
-            // TODO: 24.07.2020 test this preparedStatement.executeUpdate();
             resultSet = statement.executeQuery(StatementSql.SQL_BOOK_COUNT_QUANTITY);
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 result = resultSet.getInt(1);
             }
         } catch (SQLException e) {
             throw new DaoException("Exception of counting books from database", e);
+        } finally {
+            close(resultSet);
+        }
+        return result;
+    }
+
+    @Override
+    public int getMaxIndexInBookstore() throws DaoException {
+        ResultSet resultSet = null;
+        int result = 0;
+        try (Connection connection = pool.getConnection();
+             Statement statement = connection.createStatement()) {
+            resultSet = statement.executeQuery(StatementSql.SQL_BOOK_MAX_INDEX);
+            while (resultSet.next()) {
+                result = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Exception of getting max index of book from database", e);
         } finally {
             close(resultSet);
         }

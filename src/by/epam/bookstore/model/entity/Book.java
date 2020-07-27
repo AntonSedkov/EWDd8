@@ -21,6 +21,14 @@ public class Book extends Entity {
         this.authors.addAll(Arrays.asList(authors));
     }
 
+    public Book(String title, int yearPublishing, int pages, String... authors) {
+        this.title = title;
+        this.yearPublishing = yearPublishing;
+        this.pages = pages;
+        this.authors = new TreeSet<>();
+        this.authors.addAll(Arrays.asList(authors));
+    }
+
     public String getTitle() {
         return title;
     }
