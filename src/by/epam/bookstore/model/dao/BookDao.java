@@ -25,22 +25,22 @@ public interface BookDao extends AbstractDao<Integer, Book> {
 
     int getMaxIndexInBookstore() throws DaoException;
 
-    default void close(ResultSet resultSet) {
+    default void close(ResultSet resultSet) throws DaoException {
         if (resultSet != null) {
             try {
                 resultSet.close();
             } catch (SQLException e) {
-                // TODO: 24.07.2020 log.error("ResultSet unable to close", e);
+                throw new DaoException("ResultSet unable to close", e);
             }
         }
     }
 
-    default void close(Statement statement) {
+    default void close(Statement statement) throws DaoException {
         if (statement != null) {
             try {
                 statement.close();
             } catch (SQLException e) {
-                // TODO: 24.07.2020 log.error("ResultSet unable to close", e);
+                throw new DaoException("Statement unable to close", e);
             }
         }
     }

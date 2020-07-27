@@ -1,6 +1,7 @@
 package by.epam.bookstore.model.connection;
 
 import by.epam.bookstore.exception.DaoException;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +14,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 public enum ConnectionPool {
     INSTANCE;
 
-    // TODO: 25.07.2020 private final Logger log = LoggerCreator.getLogger(ConnectionPool.class);
+    private final Logger logger = Logger.getLogger(ConnectionPool.class);
     private BlockingDeque<ProxyConnection> freeConnections;
     private Queue<ProxyConnection> givenConnections;
     private final static int DEFAULT_POOL_SIZE = 10;
@@ -25,7 +26,7 @@ public enum ConnectionPool {
             try {
                 freeConnections.offer(new ProxyConnection(ConnectorDB.getConnection()));
             } catch (DaoException e) {
-                // TODO: 24.07.2020  log.error(e);
+                logger.error(e);
             }
         }
     }
@@ -36,7 +37,7 @@ public enum ConnectionPool {
             connection = freeConnections.take();
             givenConnections.offer(connection);
         } catch (InterruptedException e) {
-            // TODO: 24.07.2020 log.error(e) ;
+            logger.error(e);
         }
         return connection;
     }
@@ -47,7 +48,7 @@ public enum ConnectionPool {
             givenConnections.remove(proxy);
             freeConnections.offer(proxy);
         } else {
-            // TODO: 24.07.2020 log.error("Attempt to insert wrong Connection to Pool",e);
+            logger.error("Attempt to insert wrong Connection to Pool");
         }
     }
 
@@ -56,7 +57,7 @@ public enum ConnectionPool {
             try {
                 freeConnections.take().closeConnectionInPool();
             } catch (InterruptedException | SQLException e) {
-                // TODO: 24.07.2020 log.error(e);
+                logger.error(e);
             }
         }
         deregisterDriver();
@@ -67,7 +68,7 @@ public enum ConnectionPool {
             try {
                 DriverManager.deregisterDriver(driver);
             } catch (SQLException e) {
-                // TODO: 24.07.2020 log.error(e);
+                logger.error(e);
             }
         });
     }
