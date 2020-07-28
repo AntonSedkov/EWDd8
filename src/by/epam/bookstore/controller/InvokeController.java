@@ -18,7 +18,6 @@ public class InvokeController {
         Map<String, List<Book>> response;
         try {
             response = command.execute(responseParam);
-
             if (!response.values().contains(new ArrayList<>())) {
                 logger.debug("All done: Redirecting to Concrete page");
             } else {
