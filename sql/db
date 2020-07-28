@@ -17,9 +17,9 @@ INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Crime and Puni
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('The Divine Comedy', 1472, 432, 'Dante Alighieri');
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Alice''s Adventures in Wonderland', 1865, 201, 'Lewis Carroll');
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Good Omens', 2006, 512, 'Neil Gaiman, Terry Pratchett');
-INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Tales from the Shadowhunter Academy', 2016, 672, 'Cassandra Clare, Sarah Rees Brennan, Maureen Johnson, Robin Wasserman');
-INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('The Talisman: A Novel', 2012, 944, 'Stephen King, Peter Straub');
-INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Heads You Lose', 2012, 300, 'Lisa Lutz, David Hayward');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Tales from the Shadowhunter Academy', 2016, 672, 'Cassandra Clare, Maureen Johnson, Robin Wasserman, Sarah Rees Brennan');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('The Talisman: A Novel', 2012, 944, 'Peter Straub, Stephen King');
+INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('Heads You Lose', 2012, 300, 'David Hayward, Lisa Lutz');
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('In Search of Lost Time', 20, 50, 'A');
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('New Title', 1913, 51, 'B');
 INSERT INTO books(title, yearPublishing, pages, authors) VALUES ('New Title', 21, 468, 'C');

@@ -32,7 +32,7 @@ public class BookService {
                     result = dao.create(book);
                 }
             } catch (DaoException e) {
-                throw new BookServiceException("Unable to add book or it's a duplicated book", e);
+                throw new BookServiceException("Unable to add a book", e);
             }
         }
         return result;
@@ -120,7 +120,7 @@ public class BookService {
         if (BookValidator.isPositiveInteger(pages)) {
             int pagesBook = Integer.parseInt(pages);
             try {
-                result = dao.findAndSortByYearPublishing(pagesBook);
+                result = dao.findAndSortByPages(pagesBook);
             } catch (DaoException e) {
                 throw new BookServiceException(e);
             }

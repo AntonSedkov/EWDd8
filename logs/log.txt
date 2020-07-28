@@ -1,1 +1,18 @@
 
+2020-07-28 21:42:11 [main] DEBUG InvokeController:19 - All done: Redirecting to Concrete page
+2020-07-28 21:42:45 [main] DEBUG InvokeController:19 - All done: Redirecting to Concrete page
+2020-07-28 21:47:17 [main] DEBUG InvokeController:25 - BookCommandException: Redirecting to Exception page
+2020-07-28 21:49:27 [main] DEBUG InvokeController:21 - All done: Redirecting to Concrete page
+2020-07-28 21:49:27 [main] DEBUG InvokeController:23 - All done: Redirecting to Without results page
+2020-07-28 21:50:26 [main] DEBUG InvokeController:20 - All done: Redirecting to Concrete page
+2020-07-28 21:54:13 [main] DEBUG InvokeController:25 - All done: Redirecting to Without results page
+2020-07-28 21:54:30 [main] DEBUG InvokeController:23 - All done: Redirecting to Concrete page
+2020-07-28 21:55:04 [main] DEBUG InvokeController:23 - All done: Redirecting to Concrete page
+2020-07-28 21:55:04 [main] DEBUG InvokeController:28 - BookCommandException: Redirecting to Exception page
+2020-07-28 21:55:04 [main] DEBUG InvokeController:25 - All done: Redirecting to Without results page
+2020-07-28 21:59:31 [main] DEBUG InvokeController:25 - All done: Redirecting to Without results page
+2020-07-28 21:59:31 [main] DEBUG InvokeController:28 - BookCommandException: Redirecting to Exception page
+2020-07-28 21:59:31 [main] DEBUG InvokeController:23 - All done: Redirecting to Concrete page
+2020-07-28 22:02:34 [main] DEBUG InvokeController:23 - All done: Redirecting to Concrete page
+2020-07-28 22:02:34 [main] DEBUG InvokeController:28 - BookCommandException: Redirecting to Exception page
+2020-07-28 22:02:34 [main] DEBUG InvokeController:25 - All done: Redirecting to Without results page
